@@ -8,7 +8,7 @@
 The **Malaysia Flood Prediction System** is a Machine Learning-powered web application designed to act as a decision support tool for assessing flood risks across various states and territories in Malaysia. By leveraging historical weather data and an optimized Random Forest classifier, this tool provides real-time flood risk assessments based on user-defined meteorological parameters.
 
 ## 🚀 Live Demo
-https://flqchayik2aomgkfkwzpvb.streamlit.app/
+[https://flqchayik2aomgkfkwzpvb.streamlit.app/](https://5mu4biflxlsfdlxrhoi66a.streamlit.app/)
 
 ---
 
