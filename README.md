@@ -1,49 +1,42 @@
 # 🌧️ Malaysia Flood Prediction System
 
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Machine Learning](https://img.shields.io/badge/Machine_Learning-Scikit_Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
-
 ## 📌 Project Overview
-The **Malaysia Flood Prediction System** is a Machine Learning-powered web application designed to act as a decision support tool for assessing flood risks across various states and territories in Malaysia. By leveraging historical weather data and an optimized Random Forest classifier, this tool provides real-time flood risk assessments based on user-defined meteorological parameters.
+The Malaysia Flood Prediction System is a Machine Learning-powered web application designed to act as a decision support tool for assessing flood risks across various states and territories in Malaysia. By leveraging historical weather data and an optimized classifier, this tool provides real-time flood risk assessments based on user-defined meteorological parameters.
 
 ## 🚀 Live Demo
-[https://flqchayik2aomgkfkwzpvb.streamlit.app/](https://5mu4biflxlsfdlxrhoi66a.streamlit.app/)
-
----
+Experience the live deployed application here:
+👉 [https://pdyrnigfeoinwughjvmubk.streamlit.app/](https://pdyrnigfeoinwughjvmubk.streamlit.app/)
 
 ## 🧠 Machine Learning Architecture
 
 ### 1. The Model
-The core prediction engine is built upon a **Random Forest Classifier** (`flood_prediction_model.pkl`). Random Forest was selected for its robustness against overfitting and its high accuracy in handling non-linear environmental datasets. 
+The core prediction engine is built upon an optimized Classification Model (`flood_prediction_model.pkl`). The backend is engineered to process clean environmental features to safeguard against synthetic variance and ensure highly reliable predictive outputs.
 
-### 2. Feature Engineering & Data Preparation
-The model was trained on a comprehensive dataset requiring **20 distinct features**. To maximize user experience (UX) without compromising the model's integrity, the frontend is designed to take **4 critical user inputs**, while the remaining features are dynamically imputed using strategic baseline values:
+### 2. Feature Engineering & Robustness (Data Leakage Mitigation)
+The latest version of the model utilizes **17 distinct features** (optimized down from 20). Crucially, historical target-leakage features such as `Year` and `Annual_Rainfall` have been strictly eliminated from the pipeline to prevent data leakage and ensure realistic production-grade evaluation.
 
-* **User Inputs (Dynamic):**
-    * Target State / Territory (Mapped to numerical encodings)
-    * Monthly Rainfall (mm)
-    * Relative Humidity (%)
-    * Average Temperature (°C)
-* **System Imputed (Baseline):** Year, Month, Pressure, Dew Point, Wind Speed, Gust, Wind Chill, UV Index, Feel Like Temp, Visibility, Solar Radiation, Pollutant Value, Precipitation rates, and Annual Rainfall.
+To maximize user experience (UX) without compromising the model's integrity, the frontend takes **4 critical user inputs**, while the remaining baseline meteorological attributes are dynamically handled by the system pipeline:
+
+* **User Inputs (Dynamic via UI):**
+  * Target State / Territory (Automatically mapped to geographical numerical encodings)
+  * Monthly Rainfall (mm) *(Seamlessly mapped to `Precipitation_Total`)*
+  * Relative Humidity (%)
+  * Average Temperature (°C)
+* **System Imputed (Baseline Constants):** `Month`, `District_Code`, `Pressure`, `Dew_Point`, `Wind_Speed`, `Gust`, `Wind_Chill`, `UV_Index`, `Feel_Like_Temp`, `Visibility`, `Solar_Radiation`, `Pollutant_Value`, and `Precipitation_Rate`.
 
 ### 3. Caching Mechanism
-The app utilizes Streamlit's `@st.cache_resource` decorator to load the heavy `.pkl` file only once upon initialization. This drastically reduces the computational overhead and ensures instantaneous predictions when users adjust the parameters.
-
----
+The app utilizes Streamlit's `@st.cache_resource` decorator to load the heavy `.pkl` model file only once upon initialization. This drastically reduces the computational overhead and ensures instantaneous prediction updates whenever users adjust frontend sliders.
 
 ## 🛠️ Technology Stack
 * **Frontend & Deployment:** Streamlit / Streamlit Community Cloud
-* **Data Manipulation:** Pandas
-* **Machine Learning:** Scikit-Learn (Random Forest)
+* **Data Manipulation:** Pandas / NumPy
+* **Machine Learning:** Scikit-Learn
 * **Model Serialization:** Joblib
 
----
-
 ## 📂 Repository Structure
-
 ```text
+├── .devcontainer/                 # Development container configuration
 ├── flood_app.py                   # Main Streamlit application script
-├── flood_prediction_model.pkl     # Pre-trained Random Forest model
-├── requirements.txt               # Project dependencies
+├── flood_prediction_model.pkl     # Pre-trained optimized model (17 features)
+├── requirements.txt               # Project production dependencies
 └── README.md                      # Project documentation
