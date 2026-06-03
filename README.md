@@ -5,7 +5,7 @@ The Malaysia Flood Prediction System is a Machine Learning-powered web applicati
 
 ## 🚀 Live Demo
 Experience the live deployed application here:
-👉 [https://pdyrnigfeoinwughjvmubk.streamlit.app/](https://pdyrnigfeoinwughjvmubk.streamlit.app/)
+👉 https://5mu4biflxlsfdlxrhoi66a.streamlit.app/
 
 ## 🧠 Machine Learning Architecture
 
